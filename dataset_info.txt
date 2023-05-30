@@ -1,0 +1,7 @@
+# use final Grade as target
+# calculate final grade base on component/porpoation 
+# ISDT 20-21 ISDT 21-22 (around 60~90 instances ) PG
+
+# Business Information 21-22 (20~25 instances per cohort ) level 4 UG
+# Mobilie app development 21-22 (20 instances per cohort) level 5 UG
+# BIT 2 project 21-22 (28~30 instances per cohort) level 6 UG
