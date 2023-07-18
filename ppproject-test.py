@@ -2,27 +2,27 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier, VotingClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, f1_score
 
-db_data = pd.read_csv('ISDT_bb_dataset.csv')
-print(db_data.columns)
+db_data = pd.read_csv('ISDT_dataset_new - Copy.csv')
+print(db_data.columns) 
 
-# X = db_data.drop(['Latest Grade', 'Numeric Grade', 'Component Grade', 'Component Grade Letter'], axis=1)
-# X = pd.get_dummies(X)
-# y = db_data['Latest Grade']
+X=db_data.drop(['FINAL Submission Area  [Total Pts: 100 Score] |531746'],axis=1)
+for col in X.columns:
+       # print(X[col].dtypes)
+       if(X[col].dtypes=='object'):
+              X[col] = X[col].astype('category')
+              X[col] = X[col].cat.codes 
+X.to_csv('ISDT_dummies_data.csv')
+y=db_data['FINAL Submission Area  [Total Pts: 100 Score] |531746'] 
 
-X=db_data.drop(['Last Name', 'First Name', 'Username', 'Student ID','FINAL Submission Area  [Total Pts: 100 Score] |531746'],axis=1)
-print(X.columns)
-X = pd.get_dummies(X)
-
-y=db_data['FINAL Submission Area  [Total Pts: 100 Score] |531746']
-print(y)
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=100)
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.25, random_state=300)
+ 
 
 rf_clf = RandomForestClassifier()
-ada_clf = AdaBoostClassifier(n_estimators=200, random_state=42)
-gd_clf = GradientBoostingClassifier(n_estimators=200, random_state=42)
+ada_clf = AdaBoostClassifier(n_estimators=200, random_state=200)
+gd_clf = GradientBoostingClassifier(n_estimators=200, random_state=200)
 
 rf_clf.fit(X_train, y_train)
 ada_clf.fit(X_train, y_train)
@@ -41,7 +41,12 @@ ada_acc = accuracy_score(y_test, ada_pred)
 gd_acc = accuracy_score(y_test, gd_pred)
 voting_acc = accuracy_score(y_test, voting_pred)
 
-print("Random Forest Accuracy:", rf_acc)
-print("AdaBoost Accuracy:", ada_acc)
-print("Gradient Boosting Accuracy:", gd_acc)
-print("Voting Classifier Accuracy:", voting_acc)
+rf_f1 = f1_score(y_test, rf_pred, average='macro')
+ada_f1 = f1_score(y_test, ada_pred, average='macro')
+gd_f1= f1_score(y_test, gd_pred, average='macro')
+voting_f1 = f1_score(y_test, voting_pred, average='macro')
+
+print("Random Forest Accuracy:", rf_acc, " f1 score:", rf_f1)
+print("AdaBoost Accuracy:", ada_acc, " f1 score:", ada_f1)
+print("Gradient Boosting Accuracy:", gd_acc, " f1 score:", gd_f1)
+print("Voting Classifier Accuracy:", voting_acc, " f1 score:", voting_f1) 
