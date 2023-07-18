@@ -67,8 +67,8 @@ print("Training data length:", len(result_train))
 print("Validation data length:", len(result_val))
 print("Test data length:", len(result_test))
  
-result_train.to_csv(dataset_folder+'train/train.dat',sep=',', header=False,index=False)
-result_test.to_csv(dataset_folder+'test/test.dat',sep=',', header=False,index=False)
-result_val.to_csv(dataset_folder+'val/val.dat',sep=',', header=False,index=False)
+result_train.to_csv(dataset_folder+'train1/ISDT_train1.dat',sep=',', header=False,index=False)
+result_test.to_csv(dataset_folder+'test/ISDT_test.dat',sep=',', header=False,index=False)
+result_val.to_csv(dataset_folder+'val/ISDT_val.dat',sep=',', header=False,index=False)
  
 
