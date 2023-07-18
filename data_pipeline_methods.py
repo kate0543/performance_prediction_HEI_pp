@@ -4,6 +4,7 @@ import pandas as pd
 import datetime
 from datetime import datetime
 
+output_folder='csv_files/'
 performance_folder=folder = '../../../Downloads/New Folder/'
 activity_folder = '../../../Downloads/New Folder/ISDT/'
 

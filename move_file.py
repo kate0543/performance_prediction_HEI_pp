@@ -4,9 +4,6 @@ import pandas as pd
 
 from data_pipeline_methods import *
 
-
-
-folder = performance_folder
 appendix = '.csv'
 ISDT_bb_record_file = 'gc_BN-N100-M0107-T1-M-22_fullgc_2023-05-22-18-29-31'
 

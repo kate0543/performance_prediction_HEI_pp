@@ -3,6 +3,7 @@ import pandas as pd
 from datetime import datetime
 from data_pipeline_methods import *
 
+output_folder='csv_files/'
 folder = '../../../Downloads/New Folder/'
 appendix = '.csv'
 ISDT_bb_record_file = 'gc_BN-N100-M0107-T1-M-22_fullgc_2023-05-22-18-29-31'
@@ -28,7 +29,7 @@ for week in weeks:
     if week not in ISDT_bb_record.columns:
         ISDT_bb_record[week] = ""
 
-ISDT_bb_record.to_csv('ISDT_bb_performance.csv')
+ISDT_bb_record.to_csv(output_folder+'ISDT_bb_performance.csv')
 
 def find_csv_files_with_value(directory, value_list):
     csv_files = []

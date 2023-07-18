@@ -2,7 +2,9 @@ import random
 import pandas as pd
 import pickle
 
-db_data = pd.read_csv('ISDT_dataset_new - Copy.csv')
+output_folder='csv_files/'
+dataset_folder='ISDT_dummies/'
+db_data = pd.read_csv(output_folder+'ISDT_dataset_new - Copy.csv')
 print(db_data.columns) 
 
 X=db_data
@@ -22,7 +24,7 @@ for col in result.columns:
 result
 print(result) 
 result=result
-result.to_csv('ISDT_dummies_data.csv',header=False, index=False)
+result.to_csv(output_folder+'ISDT_dummies_data.csv',header=False, index=False)
 
 
 # Set the proportion of data for each split
@@ -65,8 +67,8 @@ print("Training data length:", len(result_train))
 print("Validation data length:", len(result_val))
 print("Test data length:", len(result_test))
  
-result_train.to_csv('ISDT_dummies//train//train.dat',sep=',', header=False,index=False)
-result_test.to_csv('ISDT_dummies//test//test.dat',sep=',', header=False,index=False)
-result_val.to_csv('ISDT_dummies//val//val.dat',sep=',', header=False,index=False)
+result_train.to_csv(dataset_folder+'train/train.dat',sep=',', header=False,index=False)
+result_test.to_csv(dataset_folder+'test/test.dat',sep=',', header=False,index=False)
+result_val.to_csv(dataset_folder+'val/val.dat',sep=',', header=False,index=False)
  
 

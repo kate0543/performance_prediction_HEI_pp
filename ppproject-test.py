@@ -4,7 +4,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier, VotingClassifier
 from sklearn.metrics import accuracy_score, f1_score
 
-db_data = pd.read_csv('ISDT_dataset_new - Copy.csv')
+output_folder='csv_files/'
+db_data = pd.read_csv(output_folder+'ISDT_dataset_new - Copy.csv')
 print(db_data.columns) 
 
 X=db_data.drop(['FINAL Submission Area  [Total Pts: 100 Score] |531746'],axis=1)
@@ -13,7 +14,7 @@ for col in X.columns:
        if(X[col].dtypes=='object'):
               X[col] = X[col].astype('category')
               X[col] = X[col].cat.codes 
-X.to_csv('ISDT_dummies_data.csv')
+X.to_csv(output_folder+'ISDT_dummies_data.csv')
 y=db_data['FINAL Submission Area  [Total Pts: 100 Score] |531746'] 
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=100)
